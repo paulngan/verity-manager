@@ -1,0 +1,10 @@
+<project name="Test Fusebox 5 Skeleton" default="deploy">
+	<property name="source" value="."/>
+	<property name="target" value="/www/appserver/jboss/server/default/deploy/cfusion.ear/cfusion.war"/>
+
+	<target name="deploy">
+		<copy todir="${target}/skeleton/">
+			<fileset dir="${source}" />
+		</copy>
+	</target>
+</project>

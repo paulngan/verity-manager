@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE circuit>
+
+<circuit access="public" xmlns:cf="cf/">
+	
+	<!-- 
+	\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+	
+	 				MAIN NAVIGATION LINKS
+	
+	///////////////////////////////////////////////// 
+	-->
+	
+	
+	<!-- WELCOME -->
+	<fuseaction name="home">
+		<do action="v.collection_home"/>
+	</fuseaction>
+	
+	<!-- COLLECTIONS -->
+	<fuseaction name="collections">
+		<do action="v.collection_dashboard"/>
+	</fuseaction>
+	
+	<!-- TASKS -->
+	<fuseaction name="tasks">
+		<do action="v.task_dashboard"/>
+	</fuseaction>
+	
+	<!-- SCHEDULE -->
+	<fuseaction name="schedule">
+		<do action="m.collection_list" />
+		<do action="v.collection_schedule"/>
+	</fuseaction>
+	
+	<!-- SEARCH -->
+	<fuseaction name="search">
+		<do action="m.collection_search"/>
+		<do action="m.collection_list" />
+		<do action="v.collection_search"/>
+	</fuseaction>
+	
+	<!-- DASHBOARD -->
+	<fuseaction name="dashboard">
+		<do action="v.collection_dashboard"/>
+	</fuseaction>
+	
+	<!-- DASHBOARD TASK -->
+	<fuseaction name="taskdashboard">
+		<do action="v.task_dashboard"/>
+	</fuseaction>
+
+	
+	
+	
+	
+	<!-- 
+	\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+	
+							ACTIONS 
+	
+	//////////////////////////////////////////////////////
+	-->
+
+	
+	<!-- NEW -->
+	<fuseaction name="new">
+		<do action="m.collection_new" />
+		<do action="v.collection_new" />
+	</fuseaction>
+
+	
+	<!-- INDEX -->
+	<fuseaction name="index">
+		<do action="m.collection_index" />
+		<do action="v.collection_index" />
+	</fuseaction>
+	
+	
+	<!-- UPDATE -->
+	<fuseaction name="update">
+		<do action="m.collection_update" />
+		<do action="v.collection_update" />
+	</fuseaction>
+
+	<!-- AUTO INDEX -->
+	<fuseaction name="autoindex">
+		<do action="m.autoindex" />
+	</fuseaction>
+	
+	<!-- PURGE -->
+	<fuseaction name="purge">
+		<do action="m.collection_purge" />
+		<do action="v.collection_purge"/>
+	</fuseaction>
+	
+	<!-- DELETE -->
+	<fuseaction name="delete">
+		<do action="m.collection_delete"/>
+		<do action="v.collection_delete"/>
+	</fuseaction>	
+	
+
+<!-- TASKS -->
+
+	<!-- TASK NEW -->
+	<fuseaction name="task">
+		<do action="m.task_new"/>
+		<do action="v.task_new"/>
+	</fuseaction>
+	
+	<!-- UPDATE TASK -->
+	<fuseaction name="taskupdate">
+		<do action="m.task_update"/>
+		<do action="v.task_update"/>
+	</fuseaction>	
+	
+	<!-- DELETE TASK -->
+	<fuseaction name="taskdelete">
+		<do action="m.task_delete"/>
+		<do action="v.task_delete"/>
+	</fuseaction>
+	
+	
+	<fuseaction name="formdump">
+		<do action="v.formdump"/>
+	</fuseaction>
+	
+
+	
+	
+
+	<fuseaction name="debug">
+		<cf:try>
+			<cf:switch expression="#myFusebox.getApplication().fuseactionVariable#">
+			<cf:case value="fuseaction|do" delimiters="|">
+				<cf:lock scope="application" timeout="10" type="readonly">
+					<cf:dump label="Application Data" var="#myFusebox.getApplication().getApplicationData()#" />
+				</cf:lock>
+			</cf:case>
+			<cf:defaultcase>
+				<cf:dump label="Attributes Scope" var="#attributes#" />
+			</cf:defaultcase>
+			</cf:switch>
+		<cf:catch type="application">
+			<cf:dump label="Application Exception" var="#cfcatch#" />
+		</cf:catch>
+		</cf:try>
+	</fuseaction>
+
+
+
+	
+	<!--
+		A number of test cases for bugs in Fusebox 5.0.0 that have been fixed
+	-->
+	<fuseaction name="ticket162">
+		<set name="temp" value="NONEXISTENTFILE" />
+		<!-- this works in FB4.x but throws an exception in FB5.0.0 -->
+		<include template="#temp#.cfm" required="false" />
+		<do action="welcome" />
+	</fuseaction>
+	<fuseaction name="ticket160">
+		<if condition="true">
+			<true>
+				<include template="dsp_echo" circuit="v">
+					<parameter name="data" value="true/true" />
+				</include>
+			</true>
+		</if>
+		<if condition="true">
+			<false>
+				<include template="dsp_echo" circuit="v">
+					<parameter name="data" value="true/false" />
+				</include>
+			</false>
+		</if>
+		<if condition="true">
+			<true>
+				<include template="dsp_echo" circuit="v">
+					<parameter name="data" value="true/true/1" />
+				</include>
+			</true>
+			<false>
+				<include template="dsp_echo" circuit="v">
+					<parameter name="data" value="true/false/1" />
+				</include>
+			</false>
+		</if>
+		<!-- this construct did not work in FB5.0.0 -->
+		<if condition="true">
+			<false>
+				<include template="dsp_echo" circuit="v">
+					<parameter name="data" value="true/false/2" />
+				</include>
+			</false>
+			<true>
+				<include template="dsp_echo" circuit="v">
+					<parameter name="data" value="true/true/2" />
+				</include>
+			</true>
+		</if>
+		<if condition="false">
+			<true>
+				<include template="dsp_echo" circuit="v">
+					<parameter name="data" value="false/true" />
+				</include>
+			</true>
+		</if>
+		<if condition="false">
+			<false>
+				<include template="dsp_echo" circuit="v">
+					<parameter name="data" value="false/false" />
+				</include>
+			</false>
+		</if>
+		<if condition="false">
+			<true>
+				<include template="dsp_echo" circuit="v">
+					<parameter name="data" value="false/true/1" />
+				</include>
+			</true>
+			<false>
+				<include template="dsp_echo" circuit="v">
+					<parameter name="data" value="false/false/1" />
+				</include>
+			</false>
+		</if>
+		<!-- this construct did not work in FB5.0.0 -->
+		<if condition="false">
+			<false>
+				<include template="dsp_echo" circuit="v">
+					<parameter name="data" value="false/false/2" />
+				</include>
+			</false>
+			<true>
+				<include template="dsp_echo" circuit="v">
+					<parameter name="data" value="false/true/2" />
+				</include>
+			</true>
+		</if>
+	</fuseaction>
+
+		<!-- test new relocate xfa= attribute -->
+	<fuseaction name="ticket184">
+		<xfa name="test" value="welcome" />
+		<relocate xfa="test" />
+	</fuseaction>
+	
+</circuit>

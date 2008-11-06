@@ -1,0 +1,5 @@
+If you use any custom lexicons, be sure to put them in a sub-directory off the root 
+of your apps called "lexicon". Fusebox will look for them here.  If you use 
+many custom lexicons, then you can consider putting them in sub-directories below 
+the "lexicon" dir, being careful to specify the path to them in your 
+application's circuit.xml relative to the "lexicon" dir.

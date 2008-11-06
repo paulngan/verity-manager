@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE circuit>
+
+<circuit access="internal">
+	
+	
+	<!-- HOME -->
+	<fuseaction name="collection_home">
+		<include template="dsp_collection_home" contentvariable="body"/>
+	</fuseaction>
+	
+	<!-- MENU COLLECTIONS -->
+	<fuseaction name="collection_dashboard">
+		<include template="dsp_collection_dashboard" contentvariable="body"/>
+	</fuseaction>
+	
+	<!-- MENU TASK -->
+	<fuseaction name="task_dashboard">
+		<include template="dsp_task_dashboard" contentvariable="body"/>
+	</fuseaction>
+	
+	<!-- SCHEDULE -->
+	<fuseaction name="collection_schedule">
+		<include template="dsp_collection_schedule" contentvariable="body"/>
+	</fuseaction>
+	
+	<!-- SEARCH -->
+	<fuseaction name="collection_search">
+		<include template="dsp_collection_search" contentvariable="body"/>
+	</fuseaction>
+	
+	
+	
+	
+	
+	<!-- NEW -->
+	<fuseaction name="collection_new">
+		<include template="dsp_collection_new" contentvariable="body" />
+	</fuseaction>
+	
+	<!-- INDEX -->
+	<fuseaction name="collection_index">
+		<include template="dsp_collection_index" contentvariable="body" />
+	</fuseaction>
+	
+	<!-- UPDATE -->
+	<fuseaction name="collection_update">
+		<include template="dsp_collection_update" contentvariable="body" />
+	</fuseaction>
+	
+	<!-- PURGE -->
+	<fuseaction name="collection_purge">
+		<include template="dsp_collection_purge" contentvariable="body"/>
+	</fuseaction>
+	
+	<!-- DELETE -->
+	<fuseaction name="collection_delete">
+		<include template="dsp_collection_delete" contentvariable="body"/>
+	</fuseaction>
+	
+	
+	
+	
+	
+	<!-- TASK -->
+	<fuseaction name="task_new">
+		<include template="dsp_task_new" contentvariable="body"/>
+	</fuseaction>
+	
+	<!-- TASK / UPDATE -->
+	<fuseaction name="task_update">
+		<include template="dsp_task_update" contentvariable="body"/>
+	</fuseaction>
+	
+	<!-- TASK / DELETE -->
+	<fuseaction name="task_delete">
+		<include template="dsp_task_delete" contentvariable="body"/>
+	</fuseaction>
+	
+	
+	
+	
+	
+	<!-- FORM DUMP -->
+	<fuseaction name="formdump">
+		<include template="formdump.cfm" contentvariable="body"/>
+	</fuseaction>
+	
+	
+	
+	
+	
+	<!-- PAGE TEMPLATE -->
+	<postfuseaction>
+		<include template="lay_template" />
+	</postfuseaction>
+
+
+
+
+</circuit>

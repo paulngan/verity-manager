@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE circuit>
+
+<circuit access="internal">
+	
+	
+	<!-- 
+	\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+	
+							ACTIONS
+	
+	\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+	-->
+	
+	
+	<!-- AUTOINDEX -->
+	<fuseaction name="autoindex">
+		<include template="query/qry_collection_list" />
+		<include template="action/act_collection_index"/>
+	</fuseaction>
+	
+	<!-- NEW -->
+	<fuseaction name="collection_new">
+		<include template="validate/val_collection_new"/>
+		<include template="action/act_collection_new"/>
+		<include template="action/act_collection_directory"/>
+		<include template="query/qry_collection_directory_list"/>
+	</fuseaction>
+	
+	<!-- INDEX -->
+	<fuseaction name="collection_index">
+		<include template="validate/val_collection_index"/>
+		<include template="action/act_collection_index"/>
+	</fuseaction>
+	
+	<!-- UPDATE -->
+	<fuseaction name="collection_update">
+		<include template="query/qry_collection_list" />
+		<include template="validate/val_collection_update"/>
+		<include template="action/act_collection_update"/>
+		<include template="action/act_collection_directory"/>
+		<include template="query/qry_collection_directory_list"/>
+	</fuseaction>
+	
+	<!-- PURGE -->
+	<fuseaction name="collection_purge">
+		<include template="validate/val_collection_purge"/>
+		<include template="action/act_collection_purge"/>
+	</fuseaction>
+	
+	<!-- DELETE -->
+	<fuseaction name="collection_delete">
+		<include template="validate/val_collection_delete"/>
+		<include template="action/act_collection_delete"/>
+		<include template="query/qry_collection_list" />
+	</fuseaction>
+	
+	<!-- TASK / NEW -->
+	<fuseaction name="task_new">
+		<include template="query/qry_collection_list"/>
+		<include template="validate/val_task_new"/>
+		<include template="action/act_task_new"/>
+	</fuseaction>
+	
+	<!-- TASK / UPDATE -->
+	<fuseaction name="task_update">
+		<include template="action/act_task_update"/>
+	</fuseaction>
+	
+	<!-- TASK / DELETE -->
+	<fuseaction name="task_delete">
+		<include template="action/act_task_delete"/>
+	</fuseaction>
+
+
+	
+	
+	
+	<!-- 
+	\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+	
+							QUERIES
+	
+	\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+	-->
+	
+	<!-- COLLECTION LIST -->
+	<fuseaction name="collection_list">
+		<include template="query/qry_collection_list" />
+	</fuseaction>
+	
+	<!-- COLLECTION DIRECTORY LIST -->
+	<fuseaction name="collection_directory_list">
+		<include template="query/qry_collection_directory_list"/>
+	</fuseaction>
+	
+	
+	<!-- COLLECTION INFO -->
+	<fuseaction name="collection_info">
+		<include template="query/qry_collection_info.cfm" />
+	</fuseaction>
+	
+	<!-- SCHEDULE -->
+	<fuseaction name="collection_schedule">
+		<include template="query/qry_collection_schedule.cfm"/>
+	</fuseaction>
+	
+	<!-- SEARCH -->
+	<fuseaction name="collection_search">
+		<include template="query/qry_collection_search"/>
+	</fuseaction>
+	
+	<!-- TASK / LIST -->
+	<fuseaction name="task_list">
+		<include template="query/qry_task_list"/>
+	</fuseaction>
+	
+	<!-- TASK / INFO -->
+	<fuseaction name="task_info">
+		<include template="query/qry_task_info"/>
+	</fuseaction>
+	
+
+
+
+
+
+
+
+
+
+	<fuseaction name="initialize">
+		<set name="myFusebox.getApplication().getApplicationData().startTime" value="#now()#" />
+	</fuseaction>
+	
+</circuit>
